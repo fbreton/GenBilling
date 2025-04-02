@@ -1,0 +1,94 @@
+fixed.project_name,fixed.sku_description,usage_date,fixed.pricing_unit,metric.usage,metric.unit_price,metric.cost,fixed.region
+Marketing,Jobs Compute DBU,2015-01-01T00:00:00Z,DBU,8.87,0.15,1.33,eu-central-1
+Analytics,Premium_D4_v2,2015-01-01T00:00:00Z,Compute,5.62,0.4,2.25,us-east-1
+Data,Jobs Compute DBU,2015-01-01T00:00:00Z,DBU,7.63,0.15,1.14,ap-northeast-1
+Marketing,Standard_D3_v2,2015-01-02T00:00:00Z,Compute,6.98,0.25,1.75,ap-southeast-1
+Analytics,Premium_D4_v2,2015-01-02T00:00:00Z,Compute,1.04,0.4,0.42,eu-central-1
+Data,Interactive Compute DBU,2015-01-02T00:00:00Z,DBU,4.17,0.55,2.29,ap-southeast-1
+Marketing,Interactive Compute DBU,2015-01-03T00:00:00Z,DBU,2.38,0.55,1.31,eu-central-1
+Analytics,Interactive Compute DBU,2015-01-03T00:00:00Z,DBU,8.99,0.55,4.94,us-east-1
+Data,Interactive Compute DBU,2015-01-03T00:00:00Z,DBU,7.75,0.55,4.26,us-east-1
+Marketing,Premium_D4_v2,2015-01-04T00:00:00Z,Compute,6.47,0.4,2.59,eu-west-1
+Analytics,Jobs Compute DBU,2015-01-04T00:00:00Z,DBU,0.97,0.15,0.15,eu-central-1
+Data,Interactive Compute DBU,2015-01-04T00:00:00Z,DBU,8.93,0.55,4.91,eu-west-1
+Marketing,Jobs Compute DBU,2015-01-05T00:00:00Z,DBU,3.72,0.15,0.56,us-west-2
+Analytics,Interactive Compute DBU,2015-01-05T00:00:00Z,DBU,2.69,0.55,1.48,us-east-1
+Data,Interactive Compute DBU,2015-01-05T00:00:00Z,DBU,7.5,0.55,4.12,us-west-2
+Marketing,Standard_D3_v2,2015-01-06T00:00:00Z,Compute,4.38,0.25,1.09,ap-northeast-1
+Analytics,Standard_D3_v2,2015-01-06T00:00:00Z,Compute,7.93,0.25,1.98,eu-west-1
+Data,Premium_D4_v2,2015-01-06T00:00:00Z,Compute,1.99,0.4,0.8,us-west-2
+Marketing,Premium_D4_v2,2015-01-07T00:00:00Z,Compute,9.15,0.4,3.66,eu-central-1
+Analytics,Jobs Compute DBU,2015-01-07T00:00:00Z,DBU,8.33,0.15,1.25,eu-west-1
+Data,Jobs Compute DBU,2015-01-07T00:00:00Z,DBU,7.07,0.15,1.06,us-east-1
+Marketing,Jobs Compute DBU,2015-01-08T00:00:00Z,DBU,4.48,0.15,0.67,us-west-2
+Analytics,Standard_D3_v2,2015-01-08T00:00:00Z,Compute,2.69,0.25,0.67,ap-southeast-1
+Data,Premium_D4_v2,2015-01-08T00:00:00Z,Compute,6.12,0.4,2.45,eu-west-1
+Marketing,Interactive Compute DBU,2015-01-09T00:00:00Z,DBU,9.3,0.55,5.12,ap-southeast-1
+Analytics,Jobs Compute DBU,2015-01-09T00:00:00Z,DBU,1.21,0.15,0.18,us-central1
+Data,Jobs Compute DBU,2015-01-09T00:00:00Z,DBU,5.28,0.15,0.79,us-east-1
+Marketing,Standard_D3_v2,2015-01-10T00:00:00Z,Compute,8.3,0.25,2.08,eu-central-1
+Analytics,Premium_D4_v2,2015-01-10T00:00:00Z,Compute,9.59,0.4,3.84,us-west-2
+Data,Premium_D4_v2,2015-01-10T00:00:00Z,Compute,6.91,0.4,2.76,eu-west-1
+Marketing,Premium_D4_v2,2015-01-11T00:00:00Z,Compute,3.77,0.4,1.51,ap-northeast-1
+Analytics,Interactive Compute DBU,2015-01-11T00:00:00Z,DBU,8.82,0.55,4.85,us-west-2
+Data,Interactive Compute DBU,2015-01-11T00:00:00Z,DBU,1.75,0.55,0.96,ap-northeast-1
+Marketing,Jobs Compute DBU,2015-01-12T00:00:00Z,DBU,0.97,0.15,0.15,ap-northeast-1
+Analytics,Interactive Compute DBU,2015-01-12T00:00:00Z,DBU,8.31,0.55,4.57,us-central1
+Data,Standard_D3_v2,2015-01-12T00:00:00Z,Compute,8.96,0.25,2.24,eu-central-1
+Marketing,Premium_D4_v2,2015-01-13T00:00:00Z,Compute,2.9,0.4,1.16,ap-northeast-1
+Analytics,Interactive Compute DBU,2015-01-13T00:00:00Z,DBU,7.23,0.55,3.98,us-east-1
+Data,Interactive Compute DBU,2015-01-13T00:00:00Z,DBU,4.43,0.55,2.44,ap-northeast-1
+Marketing,Jobs Compute DBU,2015-01-14T00:00:00Z,DBU,7.35,0.15,1.1,us-east-1
+Analytics,Interactive Compute DBU,2015-01-14T00:00:00Z,DBU,7.21,0.55,3.97,ap-northeast-1
+Data,Standard_D3_v2,2015-01-14T00:00:00Z,Compute,1.88,0.25,0.47,eu-west-1
+Marketing,Premium_D4_v2,2015-01-15T00:00:00Z,Compute,9.45,0.4,3.78,us-east-1
+Analytics,Standard_D3_v2,2015-01-15T00:00:00Z,Compute,9.18,0.25,2.29,ap-southeast-1
+Data,Interactive Compute DBU,2015-01-15T00:00:00Z,DBU,9.61,0.55,5.29,ap-southeast-1
+Marketing,Interactive Compute DBU,2015-01-16T00:00:00Z,DBU,3.78,0.55,2.08,ap-northeast-1
+Analytics,Interactive Compute DBU,2015-01-16T00:00:00Z,DBU,9.48,0.55,5.21,ap-northeast-1
+Data,Standard_D3_v2,2015-01-16T00:00:00Z,Compute,6.33,0.25,1.58,eu-west-1
+Marketing,Premium_D4_v2,2015-01-17T00:00:00Z,Compute,5.0,0.4,2.0,ap-northeast-1
+Analytics,Premium_D4_v2,2015-01-17T00:00:00Z,Compute,5.77,0.4,2.31,us-west-2
+Data,Standard_D3_v2,2015-01-17T00:00:00Z,Compute,0.5,0.25,0.12,eu-central-1
+Marketing,Jobs Compute DBU,2015-01-18T00:00:00Z,DBU,5.08,0.15,0.76,ap-southeast-1
+Analytics,Premium_D4_v2,2015-01-18T00:00:00Z,Compute,5.44,0.4,2.18,ap-northeast-1
+Data,Jobs Compute DBU,2015-01-18T00:00:00Z,DBU,4.07,0.15,0.61,ap-southeast-1
+Marketing,Jobs Compute DBU,2015-01-19T00:00:00Z,DBU,4.7,0.15,0.7,us-east-1
+Analytics,Premium_D4_v2,2015-01-19T00:00:00Z,Compute,7.84,0.4,3.14,eu-central-1
+Data,Premium_D4_v2,2015-01-19T00:00:00Z,Compute,1.31,0.4,0.52,eu-west-1
+Marketing,Premium_D4_v2,2015-01-20T00:00:00Z,Compute,0.95,0.4,0.38,us-central1
+Analytics,Standard_D3_v2,2015-01-20T00:00:00Z,Compute,6.37,0.25,1.59,eu-west-1
+Data,Jobs Compute DBU,2015-01-20T00:00:00Z,DBU,6.98,0.15,1.05,us-west-2
+Marketing,Interactive Compute DBU,2015-01-21T00:00:00Z,DBU,0.88,0.55,0.48,eu-west-1
+Analytics,Interactive Compute DBU,2015-01-21T00:00:00Z,DBU,9.76,0.55,5.37,us-east-1
+Data,Jobs Compute DBU,2015-01-21T00:00:00Z,DBU,8.0,0.15,1.2,us-east-1
+Marketing,Premium_D4_v2,2015-01-22T00:00:00Z,Compute,5.64,0.4,2.26,ap-southeast-1
+Analytics,Interactive Compute DBU,2015-01-22T00:00:00Z,DBU,8.84,0.55,4.86,eu-west-1
+Data,Premium_D4_v2,2015-01-22T00:00:00Z,Compute,8.2,0.4,3.28,eu-west-1
+Marketing,Premium_D4_v2,2015-01-23T00:00:00Z,Compute,5.66,0.4,2.26,us-west-2
+Analytics,Interactive Compute DBU,2015-01-23T00:00:00Z,DBU,2.49,0.55,1.37,us-east-1
+Data,Standard_D3_v2,2015-01-23T00:00:00Z,Compute,2.21,0.25,0.55,eu-west-1
+Marketing,Interactive Compute DBU,2015-01-24T00:00:00Z,DBU,9.7,0.55,5.33,ap-southeast-1
+Analytics,Standard_D3_v2,2015-01-24T00:00:00Z,Compute,1.44,0.25,0.36,us-central1
+Data,Premium_D4_v2,2015-01-24T00:00:00Z,Compute,9.86,0.4,3.94,us-central1
+Marketing,Jobs Compute DBU,2015-01-25T00:00:00Z,DBU,8.27,0.15,1.24,eu-central-1
+Analytics,Premium_D4_v2,2015-01-25T00:00:00Z,Compute,3.5,0.4,1.4,eu-west-1
+Data,Premium_D4_v2,2015-01-25T00:00:00Z,Compute,1.27,0.4,0.51,us-east-1
+Marketing,Jobs Compute DBU,2015-01-26T00:00:00Z,DBU,7.76,0.15,1.16,eu-central-1
+Analytics,Standard_D3_v2,2015-01-26T00:00:00Z,Compute,9.06,0.25,2.27,us-central1
+Data,Interactive Compute DBU,2015-01-26T00:00:00Z,DBU,6.44,0.55,3.54,eu-west-1
+Marketing,Premium_D4_v2,2015-01-27T00:00:00Z,Compute,3.32,0.4,1.33,eu-west-1
+Analytics,Jobs Compute DBU,2015-01-27T00:00:00Z,DBU,2.64,0.15,0.4,ap-northeast-1
+Data,Premium_D4_v2,2015-01-27T00:00:00Z,Compute,7.4,0.4,2.96,us-east-1
+Marketing,Jobs Compute DBU,2015-01-28T00:00:00Z,DBU,7.59,0.15,1.14,us-east-1
+Analytics,Jobs Compute DBU,2015-01-28T00:00:00Z,DBU,7.95,0.15,1.19,us-west-2
+Data,Interactive Compute DBU,2015-01-28T00:00:00Z,DBU,5.8,0.55,3.19,us-central1
+Marketing,Premium_D4_v2,2015-01-29T00:00:00Z,Compute,2.66,0.4,1.06,ap-southeast-1
+Analytics,Standard_D3_v2,2015-01-29T00:00:00Z,Compute,2.68,0.25,0.67,eu-central-1
+Data,Interactive Compute DBU,2015-01-29T00:00:00Z,DBU,8.31,0.55,4.57,us-central1
+Marketing,Interactive Compute DBU,2015-01-30T00:00:00Z,DBU,7.35,0.55,4.04,us-central1
+Analytics,Standard_D3_v2,2015-01-30T00:00:00Z,Compute,2.91,0.25,0.73,ap-southeast-1
+Data,Premium_D4_v2,2015-01-30T00:00:00Z,Compute,8.17,0.4,3.27,eu-central-1
+Marketing,Interactive Compute DBU,2015-01-31T00:00:00Z,DBU,2.6,0.55,1.43,eu-west-1
+Analytics,Premium_D4_v2,2015-01-31T00:00:00Z,Compute,5.89,0.4,2.36,eu-central-1
+Data,Premium_D4_v2,2015-01-31T00:00:00Z,Compute,5.0,0.4,2.0,ap-southeast-1
