@@ -1,19 +1,38 @@
 import pandas as pd
 import random
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime
+import requests
+import argparse
+
+# Constants to modify regarding your environment
+filename = "./csvfiles/billing.csv"         # CSV file path 
+token_file = "../tokens/env2-token.json"    # Token file path
 
 try:
-    target = sys.argv[3]
+    parser = argparse.ArgumentParser()
+    parser.add_argument("start_date", type=str, help="Start date in YYYY-MM-DD format")
+    parser.add_argument("end_date", type=str, help="End date in YYYY-MM-DD format")
+    parser.add_argument("target", type=str, help="Target provider")
+    parser.add_argument('-l', '--load', action='store_true', help='Load data to DataHub')
+    args = parser.parse_args()
 
-    start_date = datetime.strptime(sys.argv[1], '%Y-%m-%d').date()
-    end_date = datetime.strptime(sys.argv[2], '%Y-%m-%d').date()
+    start_date = datetime.strptime(args.start_date, '%Y-%m-%d').date()
+    end_date = datetime.strptime(args.end_date, '%Y-%m-%d').date()
     time_range = pd.date_range(start=start_date, end=end_date, freq='D')
+    target = args.target
 
 except Exception as e:
     print("Usage: python gen_csv_bill.py <start_date> <end_date> <target>")
     print("  - date format: YYYY-MM-DD")
     sys.exit(1)
+
+if end_date < start_date:
+    print("End date must be after start date")
+    sys.exit(1)
+
+
+#add function to generate billing data, use Databricks exemple
 
 # Generate synthetic Databricks billing data
 def generate_databricks_billing():
@@ -49,6 +68,24 @@ def generate_databricks_billing():
             "fixed.region": random.choice(regions)
         })
 
+# loading data to DataHub in the targeted Dataset
+def upload_to_datahub():
+
+    api_key_file = open(token_file, "r")
+    api_key = "Bearer " + api_key_file.read().strip()
+    api_key_file.close()
+
+    url = "https://api.doit.com/datahub/v1/csv/upload"
+    files = { "file": (filename, open(filename, "rb"), "text/csv") }
+    payload = { "provider": target }
+    headers = {
+        "accept": "application/json",
+        "Authorization": api_key
+    }
+
+    response = requests.post(url, data=payload, files=files, headers=headers)
+    return response
+
 data = []
 
 match target:
@@ -62,5 +99,9 @@ match target:
 df = pd.DataFrame(data)
 
 # Save to CSV
-file_path = "./csvfiles/billing.csv"
-df.to_csv(file_path, index=False)
+df.to_csv(filename, index=False)
+
+if args.load:
+    response = upload_to_datahub()
+    print(response.json())
+
