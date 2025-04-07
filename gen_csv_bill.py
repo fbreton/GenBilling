@@ -89,7 +89,7 @@ def upload_to_datahub():
 data = []
 
 match target:
-    case"Databricks" | "databricks":
+    case "Databricks":
         generate_databricks_billing()
     case _:
         print("Invalid target")
