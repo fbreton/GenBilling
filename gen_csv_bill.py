@@ -28,18 +28,33 @@ except Exception as e:
     print("  - date format: YYYY-MM-DD")
     sys.exit(1)
 
-if end_date < start_date:
-    print("End date must be after start date")
+if end_date <= start_date:
+    print("End date must be after or equal to start date")
     sys.exit(1)
 
 regions = ["us-east-1", "us-west-2", "us-central1","eu-west-1","eu-central-1","ap-southeast-1","ap-northeast-1"]
 tag_values = {
     "project":["AstroFrontier", "CelestialNavigator", "CosmicDiscovery", "GalaticExplorer", "GalaticOdyssey", "InfinityVoyage", "InterstellarMission", "NebulaPioneer", "OrionExpedition", "StarlightQuest"],
     "env":["demo", "development", "playground", "production", "qa", "sandbox", "staging"],
-    "app":["AstroCloud", "ByteGalaxy", "CloudCosmos", "CloudSwiftX", "CyberOrbit", "NebulaCraft", "NebulaInsight", "NexusStellar", "QuantumNimbus", "SpackCelestial"]
+    "app":["AstroCloud", "ByteGalaxy", "CloudCosmos", "CloudSwiftX", "CyberOrbit", "NebulaCraft", "NebulaInsight", "NexusStellar", "QuantumNimbus", "SparkCelestial"]
     }
 
-#add function to generate billing data, use Databricks exemple
+#generate a file of number of user per application and region
+def generate_user_data():
+    for date in time_range:
+        for app in tag_values["app"]:
+            for region in regions:
+                usage = random.randint(100, 2000)
+                data.append({
+                    "usage_date": date.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "fixed.region": region,
+                    "metric.nb_users": usage,
+                    "metric.unit_price": 2,
+                    "fixed.pricing_unit": "Day/User",
+                    "metric.cost": usage * 2,
+                    "label.currency": "USD",
+                    "label.app": app
+                })
 
 # Generate synthetic OCI billing data
 def generate_oci_billing():
@@ -89,10 +104,10 @@ def generate_oci_billing():
                         "metric.usage": usage,
                         "metric.unit_price": unitprice[service],
                         "fixed.pricing_unit": pricing_unit[service],
-                    "metric.cost": cost,
-                    "label.currency": "USD",
-                    "label.project": random.choice(tag_values["project"]),
-                    "label.env": random.choice(tag_values["env"]),
+                        "metric.cost": cost,
+                        "label.currency": "USD",
+                        "label.project": random.choice(tag_values["project"]),
+                        "label.env": random.choice(tag_values["env"]),
                     "label.app": random.choice(tag_values["app"]),
                     "fixed.resource_id": random.choice(resource_id[service])
                 })
@@ -189,6 +204,8 @@ match target:
         generate_databricks_billing()
     case "OCI":
         generate_oci_billing()
+    case "UserPerApp":
+        generate_user_data()
     case _:
         print("Invalid target")
         sys.exit(1)
