@@ -206,6 +206,10 @@ match target:
         generate_oci_billing()
     case "UserPerApp":
         generate_user_data()
+    case "All":
+        generate_databricks_billing()
+        generate_oci_billing()
+        generate_user_data()
     case _:
         print("Invalid target")
         sys.exit(1)
