@@ -7,7 +7,6 @@ import argparse
 import string
 
 # Constants to modify regarding your environment
-filename = "./csvfiles/billing.csv"         # CSV file path 
 token_file = "../tokens/env1-token.json"    # Token file path
 
 try:
@@ -39,8 +38,28 @@ tag_values = {
     "app":["AstroCloud", "ByteGalaxy", "CloudCosmos", "CloudSwiftX", "CyberOrbit", "NebulaCraft", "NebulaInsight", "NexusStellar", "QuantumNimbus", "SparkCelestial"]
     }
 
+#loading data to DataHub in the targeted Dataset
+def upload_to_datahub(file, targ):
+
+    api_key_file = open(token_file, "r")
+    api_key = "Bearer " + api_key_file.read().strip()
+    api_key_file.close()
+
+    url = "https://api.doit.com/datahub/v1/csv/upload"
+    files = { "file": (file, open(file, "rb"), "text/csv") }
+    payload = { "provider": targ }
+    headers = {
+        "accept": "application/json",
+        "Authorization": api_key
+    }
+
+    response = requests.post(url, data=payload, files=files, headers=headers)
+    return response
+
 #generate a file of number of user per application and region
 def generate_user_data():
+    filename = "./csvfiles/billing_user.csv"         # CSV file path 
+    data = []
     for date in time_range:
         for app in tag_values["app"]:
             for region in regions:
@@ -55,9 +74,18 @@ def generate_user_data():
                     "label.currency": "USD",
                     "label.app": app
                 })
+    # Create DataFrame
+    df = pd.DataFrame(data)
+    # Save to CSV
+    df.to_csv(filename, index=False)
+    # loading data to DataHub in the targeted Dataset
+    if args.load:
+        response = upload_to_datahub(filename, "UserPerApp")
+        print(response.json())
 
 # Generate synthetic OCI billing data
 def generate_oci_billing():
+    filename = "./csvfiles/billing_oci.csv"         # CSV file path 
     account_id = ["SUBSCRIPTION104", "SUBSCRIPTION207", "SUBSCRIPTION321","SUBSCRIPTION410"]
     services = ["vm", "database", "storage", "networking", "ai"]
     pricing_unit = {
@@ -88,7 +116,7 @@ def generate_oci_billing():
         "networking": 0.18, 
         "ai": 0.08
     }
-
+    data = []
     for date in time_range:
         for account in account_id:
             for service in services:
@@ -111,9 +139,18 @@ def generate_oci_billing():
                     "label.app": random.choice(tag_values["app"]),
                     "fixed.resource_id": random.choice(resource_id[service])
                 })
+    # Create DataFrame
+    df = pd.DataFrame(data)
+    # Save to CSV
+    df.to_csv(filename, index=False)
+    # loading data to DataHub in the targeted Dataset
+    if args.load:
+        response = upload_to_datahub(filename, "OCI")
+        print(response.json())
 
 # Generate synthetic Databricks billing data
 def generate_databricks_billing():
+    filename = "./csvfiles/billing_databricks.csv"         # CSV file path 
     services = ["JOBS", "DLT", "SQL", "MODEL_SERVING", "INTERACTIVE", "DEFAULT_STORAGE", "VECTOR_SEARCH", "LAKEHOUSE_MONITORING", "PREDICTIVE_OPTIMIZATION", "ONLINE_TABLES", "FOUNDATION_MODEL_TRAINING", "AGENT_EVALUATION", "FINE_GRAIN_ACCESS_CONTROL", "NETWORKING", "APPS"]
     pricing_unit = {
         "JOBS": "DBU",
@@ -155,7 +192,7 @@ def generate_databricks_billing():
         "bd59efba-4444-4444-393f-444444448104": ["Analytics", "Data"],
         "bd59efba-4444-4444-49ac-444444446325": ["Rocket","AI"]
     }
-
+    data = []
     for date in time_range:
         for account in account_id:
             for workspace in account_workspace[account]:
@@ -178,26 +215,14 @@ def generate_databricks_billing():
                         "label.env": random.choice(tag_values["env"]),
                         "label.app": random.choice(tag_values["app"])
                     })
-
-# loading data to DataHub in the targeted Dataset
-def upload_to_datahub():
-
-    api_key_file = open(token_file, "r")
-    api_key = "Bearer " + api_key_file.read().strip()
-    api_key_file.close()
-
-    url = "https://api.doit.com/datahub/v1/csv/upload"
-    files = { "file": (filename, open(filename, "rb"), "text/csv") }
-    payload = { "provider": target }
-    headers = {
-        "accept": "application/json",
-        "Authorization": api_key
-    }
-
-    response = requests.post(url, data=payload, files=files, headers=headers)
-    return response
-
-data = []
+    # Create DataFrame
+    df = pd.DataFrame(data)
+    # Save to CSV
+    df.to_csv(filename, index=False)
+    # loading data to DataHub in the targeted Dataset
+    if args.load:
+        response = upload_to_datahub(filename, "Databricks")
+        print(response.json())
 
 match target:
     case "Databricks":
@@ -213,14 +238,3 @@ match target:
     case _:
         print("Invalid target")
         sys.exit(1)
-
-# Create DataFrame
-df = pd.DataFrame(data)
-
-# Save to CSV
-df.to_csv(filename, index=False)
-
-if args.load:
-    response = upload_to_datahub()
-    print(response.json())
-
