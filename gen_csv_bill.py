@@ -27,7 +27,7 @@ except Exception as e:
     print("  - date format: YYYY-MM-DD")
     sys.exit(1)
 
-if end_date <= start_date:
+if end_date < start_date:
     print("End date must be after or equal to start date")
     sys.exit(1)
 
