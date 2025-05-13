@@ -231,6 +231,9 @@ match target:
         generate_oci_billing()
     case "UserPerApp":
         generate_user_data()
+    case "AllWU":
+        generate_databricks_billing()
+        generate_oci_billing()
     case "All":
         generate_databricks_billing()
         generate_oci_billing()
