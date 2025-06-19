@@ -56,6 +56,66 @@ def upload_to_datahub(file, targ):
     response = requests.post(url, data=payload, files=files, headers=headers)
     return response
 
+#generate a file for Fastly cost
+def generate_fastly_billing():
+    filename = "./csvfiles/billing_fastly.csv"         # CSV file path 
+
+    regions = ["North America", "Europe", "Asia", "Oceania","Africa","Latin America"]
+    services = ["POST","PUT","GET","DELETE","DATA TRANSFERT"]
+    hosts = ["puddy.com", "puddy-app.com", "festivus.com", "festivus-help.com", "serenity.com", "kramers.com", "maestro.com", "muffin.com", "vandelay.com","avimport.com","costanza.com","perterman.com"]
+    pricing_unit = {
+        "POST": "10K Requests",
+        "PUT": "10K Requests",
+        "GET": "10K Requests",
+        "DELETE": "10K Requests",
+        "DATA TRANSFERT": "GB"
+    }
+    unitprice = {
+        "POST": 0.0075,
+        "PUT": 0.0075,
+        "GET": 0.0075,
+        "DELETE": 0.0075,
+        "DATA TRANSFERT": 0.12
+    }
+    data = []
+    for date in time_range:
+        for host in hosts:
+            for region in regions:
+                for service in services:
+                    usage = random.randint(100000, 1000000)
+                    match region:
+                        case "Asia"|"Latin America":
+                            unitp = unitprice[service] * 1.5
+                        case "Oceania"|"Africa":
+                            unitp = unitprice[service] * 2
+                        case _:
+                            unitp = unitprice[service]
+                    if service == "DATA TRANSFERT":
+                        usage = round(usage/1024,2)
+                        cost = round(usage * unitp,2)
+                    else:
+                        cost = round(usage * unitp/10000,2)
+                    data.append({
+                        "usage_date": date.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                        "fixed.region": region,
+                        "fixed.service_description": service,
+                        "fixed.service_id": service,
+                        "metric.usage": usage,
+                        "metric.unit_price": unitp,
+                        "fixed.pricing_unit": pricing_unit[service],
+                        "metric.cost": cost,
+                        "label.currency": "USD",
+                        "label.host": host
+                    })
+    # Create DataFrame
+    df = pd.DataFrame(data)
+    # Save to CSV
+    df.to_csv(filename, index=False)
+    # loading data to DataHub in the targeted Dataset
+    if args.load:
+        response = upload_to_datahub(filename, "Fastly")
+        print(response.json())
+
 #generate a file of number of user per application and region
 def generate_user_data():
     filename = "./csvfiles/billing_user.csv"         # CSV file path 
@@ -231,13 +291,17 @@ match target:
         generate_oci_billing()
     case "UserPerApp":
         generate_user_data()
+    case "Fastly":
+        generate_fastly_billing()
     case "AllWU":
         generate_databricks_billing()
         generate_oci_billing()
+        generate_fastly_billing()
     case "All":
         generate_databricks_billing()
         generate_oci_billing()
         generate_user_data()
+        generate_fastly_billing()
     case _:
         print("Invalid target")
         sys.exit(1)
