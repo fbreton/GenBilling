@@ -298,7 +298,6 @@ match target:
         generate_oci_billing()
         generate_fastly_billing()
     case "All":
-        generate_databricks_billing()
         generate_oci_billing()
         generate_user_data()
         generate_fastly_billing()
